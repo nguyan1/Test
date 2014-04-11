@@ -1,4 +1,5 @@
 Sub addAnimatedClock()
+    'Create animated countdown timer in Powerpoint using VBA
     t = 5 'minutes
     m = 6 'degrees per clock segment
     For a = -90 To (270 - m) Step m
