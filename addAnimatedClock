@@ -1,0 +1,17 @@
+Sub addAnimatedClock()
+    t = 5 'minutes
+    m = 6 'degrees per clock segment
+    For a = -90 To (270 - m) Step m
+        Set oshp = ActivePresentation.Slides(1).Shapes.AddShape(142, 0, 0, 300, 300)
+        With oshp
+            .Adjustments(1) = a
+            .Adjustments(2) = 270
+        End With
+        Set oeff = ActivePresentation.Slides(1).TimeLine.MainSequence.AddEffect(Shape:=oshp, effectid:=msoAnimEffectAppear, trigger:=msoAnimTriggerAfterPrevious)
+        oeff.Exit = msoTrue
+        With oeff.Timing
+            .Duration = 0
+            .TriggerDelayTime = 60 * t / 360 * m
+        End With
+    Next
+End Sub
